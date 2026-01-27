@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    background-color: #67A147;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.main-box{
+    background: white;
+    width: 350px;
+    padding: 30px;
+
+}
+
+input{
+    background: #F2F2F2 !important;
+
+}
+
+.login-btn{
+    background-color: #67A147;
+    color: white;
+    border: none;
+
+}
+
+
