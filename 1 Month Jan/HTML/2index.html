@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOC TECH </title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <style>
+        body{
+            background: rgb(221, 211, 211);
+        }
+        .col-6 {
+            border: 1px solid black;
+        }
+        .mobile-responsive {
+            background: rgb(0, 255, 68);
+        }
+        @media only screen and (max-width : 300px) {
+            .mobile-responsive {
+                background: rgb(178, 95, 150);
+            }
+        }
+        th,
+        td {
+            border: 2px solid black;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="mobile-responsive">
+                    <h1> Media Queries - Mobile ,Laptop Responsive </h1>
+                </div>
+            </div>
+            <div class="col-6">
+                <h1> Media Element (Images , Videos , Audio)</h1>
+                <video width="500" controls>
+                    <source src="https://cdn.pixabay.com/video/2022/09/03/130062-746154306_tiny.mp4">
+                </video>
+                <br /><br />
+                <audio controls>
+                    <source
+                        src="https://ott.dolby.com/OnDelKits/AC-4/Dolby_AC-4_Online_Delivery_Kit_1.5/Test_Signals/muxed_streams/MP4/Example/Audio_ID_720p_2997fps_h264_2ch_64kbps_ac4_fra.mp4">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Table</h1>
+                <table>
+                    <tr>
+                        <th> Name </th>
+                        <th> Age </th>
+                        <th> Clg </th>
+                        <th> Name </th>
+                        <th> Age </th>
+                        <th> Clg </th>
+                    </tr>
+                    </tr>
+                    <tr>
+                        <td> Manisha </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                        <td> Manisha </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                    </tr>
+                    <tr>
+                        <td> Gita </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                        <td> Gita </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                    </tr>
+                    <tr>
+                        <td> Sanjivani </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                        <td> Sanjivani </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                    </tr>
+                    <tr>
+                        <td> Girija </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                        <td> Girija </td>
+                        <td> 22 </td>
+                        <td> KICAM </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-6">
+                <h1>Form</h1>
+                <form>
+                    <input type="text" placeholder="Enter Your Name" />
+                    <br />
+                    <input type="date" />
+                    <br />
+                    <input type="color" />
+                    <br />
+                    <input type="button">
+                    <br />
+                    <input type="checkbox">
+                    <br />
+                    <input type="time">
+                    <br />
+                    <input type="search">
+                    <br />
+                    <input type="radio">
+                    <br />
+                    <input type="email">
+                    <br />
+                    <input type="file">
+                    <br />
+                    <input type="password">
+                    <br />
+                    <input type="submit">
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
