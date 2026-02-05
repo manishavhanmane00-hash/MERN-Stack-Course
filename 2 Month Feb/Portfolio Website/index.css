@@ -63,4 +63,30 @@ body {
     padding: 15px;
 
 }
-    
+
+label {
+    display: inline-block;
+}
+
+.contactme-card {
+    padding: 20px;
+
+}
+
+.hero-section-2 h1 {
+    font-size: 15px;
+    z-index: 1;
+    position: relative;
+
+}
+
+.hero-section-2 {
+    color: white;
+    text-align: center;
+    padding: 60px;
+    background: linear-gradient(#1E40AF);
+    position: relative;
+    overflow: hidden;
+}
+
+
