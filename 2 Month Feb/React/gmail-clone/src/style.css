@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
 /* Universal Selector - Applies to all elements Tags */
 * {
     margin: 0;
@@ -6,12 +8,24 @@
     /*Remove default padding  */
     box-sizing: border-box;
     /*Include padding and border in element's total width/height */
+
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+    font-size: .975rem;
 }
 
 /* Body - Main page container */
 body {
     background: white;
     /*  White Background */
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "GRAD" 0;
+        
 }
 
 /* Gmail Container - Main wrapper for entire app */
@@ -33,9 +47,12 @@ body {
     padding: 8px 12px;
     /* 8px top/bottom , 12px left/right padding */
     height: 61px;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
 }
 
-.header-search{
+.header-search {
     max-width: 500px;
     background: #E9EEF6;
     border: 0px solid black;
@@ -44,40 +61,43 @@ body {
 }
 
 
-     /* Side bar CSS */
+/* Side bar CSS */
 
-     
-.compose-btn{
+
+.compose-btn {
     background: #C2E7FF;
-    border:  none !important;
+    border: none !important;
     border-radius: 15px;
     font-size: 15px;
-    font-weight: 600px;
-    box-shadow: (60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    font-weight: 600px !important;
+    box-shadow: (60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
     color: #202124 !important;
     text-align: center;
-}     
+}
 
-.sidebar{
+.sidebar {
     padding: 9px;
     background: #F8FAFD;
+    position: fixed;
+    bottom: 0;
+    top: 8%;
 }
 
-.compose-btn:hover{
+.compose-btn:hover {
     background: #C2E7FF;
-    box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15) !important;
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, .3), 0 4px 8px 3px rgba(60, 64, 67, .15) !important;
 }
 
-ul{
+ul {
     list-style-type: none;
     padding: 0;
 }
 
-.sidebar-nav{
+.sidebar-nav {
     padding-left: 10px;
 }
 
-.nav-item{
+.nav-item {
     padding: 10px 24px 0 20px !important;
     height: 32px;
     border-radius: 0 16px 16px 0 !important;
@@ -96,16 +116,51 @@ ul{
 /* *******Main Content****** */
 
 
-.main-content{
+.main-content {
     display: flex;
     flex-direction: column;
+    margin-left: 16%;
+    margin-top: 4%;
+    padding: 0;
 }
 
-.email-list{
+.email-list {
     background: #fff;
+    padding-left: 7px;
 }
 
-.email-row{
-    height:45px;
+.email-row {
+    height: 45px;
     cursor: pointer;
 }
+
+
+.star-btn {
+    font-size: 25px;
+}
+
+.read {
+    background: #F2F6FC;
+}
+
+.unread {
+    background: #FFFFFF;
+}
+
+.read .form-check-input {
+    background: #F2F6FC;
+    border: 1px solid #BEC1C5;
+}
+
+.unread .form-check-input {
+    background: #FFFFFF;
+}
+
+.unread {
+    font-weight: bold;
+}
+
+/* .email-row:hover{
+    box-shadow: inset 1px 0 0 rgb(218, 220, 224), inset -1px 0 0 rgb(218, 220, 224), 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px;
+    z-index: 2;
+} */
