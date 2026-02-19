@@ -137,6 +137,11 @@ ul {
 
 }
 
+.header-icon-2{
+    padding: 15px;
+}
+
+
 .email-list {
     background: #fff;
     padding-left: 7px;
@@ -199,6 +204,7 @@ ul {
     height: 60px;
     width: 100%;
     padding-left: 10px;
+    background: #FFFFFF;
 }
 .col-md-3{
     margin-top: 25px;
@@ -210,10 +216,34 @@ ul {
 }
 .header-icon{
     padding-left: 20px;
-    margin-top: 14px;
+    margin: 10px;
     display: flex;
     column-gap: 18px;
     height: 30px;
+    background: #FFFFFF;
+}
+
+.header-icon-3{
+    height: 30px;
+    width: 50px;
+    padding-left: 820px;
+
+}
+.icons{
+    padding: 10px;
+}
+
+.icons-1{
+    display: flex;
+    padding: 2px;
+    margin-top: 13px;
+}
+
+
+
+.header-icon-2:hover {
+    background: #f4f4f4;
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, .3), 0 4px 8px 3px rgba(60, 64, 67, .15) !important;
 }
 
 
@@ -223,9 +253,21 @@ ul {
 }
 
 .header-icon-1:hover {
-    background: #f2f2f2;
+    background: #f4f4f4;
     box-shadow: 0 1px 3px 0 rgba(60, 64, 67, .3), 0 4px 8px 3px rgba(60, 64, 67, .15) !important;
 }
+
+.dropdown-list {
+    color: black;
+    background: #ffff;
+    font-size: 12px;   
+}
+
+.dropdown-list:hover {
+    background: #f4f4f4;
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, .3), 0 4px 8px 3px rgba(60, 64, 67, .15) !important;
+}
+
 
 
 
