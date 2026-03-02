@@ -4,130 +4,176 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 import "./style.css"
+import { useState } from 'react';
 
 function App() {
+
+  const [ItemName, setItemName] = useState()  // 1 Use state Hook
+
+
+
+
+
+
+  console.log(ItemName , "Item Name Value")
+  const handleOnChange = (event) => {
+
+
+    setItemName(event.target.value)
+
+
+    console.log("Typing on Input field")
+  }
+
+
+
+
+  function SubmitForm(e) {
+    e.preventDefault();
+    console.log("Form Submitted")
+
+    toast.success("Form Submitted", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  }
+
+
+
 
 
   return (
     <>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
+
       <h2 className='text-danger text-center my-5'>CRUD - MERN Stack Project Start</h2>
       <div className='container'>
         <div className='row'>
           <div className='col-md-6'>
-            <h3 className='border text-center'>Add Item</h3>
+            <h3 className='border text-center'>Create Item</h3>
             <Form>
-              <Row className="mb-3">
+              <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Label>Item Name</Form.Label>
+                  <Form.Control type="text" placeholder="Enter Item Name" onChange={() => handleOnChange(event)} />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridCity">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control type="text" placeholder="Enter Description" />
                 </Form.Group>
 
+              </Row>
+
+              <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Label>Purchase Price</Form.Label>
+                  <Form.Control type="number" placeholder="Enter Purchase Price" />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridAddress1">
+                  <Form.Label>Selling Price</Form.Label>
+                  <Form.Control type="number" placeholder="Enter Selling Price" />
                 </Form.Group>
               </Row>
 
-              <Form.Group className="mb-3" controlId="formGridAddress1">
-                <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="1234 Main St" />
-              </Form.Group>
-
-              <Row className="mb-3">
+              <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridCity">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control />
+                  <Form.Label>Quantity</Form.Label>
+                  <Form.Control type="number" placeholder="Enter Quantiy" />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>State</Form.Label>
-                  <Form.Select defaultValue="Choose...">
-                    <option>Choose...</option>
-                    <option>...</option>
+                  <Form.Label>Unit</Form.Label>
+                  <Form.Select defaultValue="Choose Unit">
+                    <option>Choose Unit</option>
+                    <option>Pice</option>
+                    <option>Box</option>
+                    <option>Kg</option>
+                    <option>Gram</option>
+                    <option>Liter</option>
                   </Form.Select>
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridZip">
-                  <Form.Label>Zip</Form.Label>
-                  <Form.Control />
-                </Form.Group>
               </Row>
 
-              <Form.Group className="mb-3" id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
               <div className='text-center'>
-                <Button variant="primary" type="submit" className='w-50'>
-                Submit
-              </Button>
+                <Button 
+                  variant="primary"
+                  type="submit"
+                  className='w-50'
+                  onClick={SubmitForm}>
+                  Submit
+                </Button>
               </div>
-              
             </Form>
+
           </div>
           <div className='col-md-6'>
-            <h3 className='border text-center'>Item List</h3>
+            <h3 className='border text-center'>Get Items</h3>
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Zip</th>
+                  <th>Id</th>
+                  <th>Item Name</th>
+                  <th>Description</th>
+                  <th>Purchase Price</th>
+                  <th>Selling Price</th>
+                  <th>Quantity</th>
+                  <th>Unit</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>test@gmail.com</td>
-                  <td>1234</td>
-                  <td>Kasegaon</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415-404</td>
+                  <td>1</td>
+                  <td>Pen</td>
+                  <td>Gel Pen </td>
+                  <td>10</td>
+                  <td>20</td>
+                  <td>10</td>
+                  <td>Box</td>
+                  <td className='d-flex'>
+                    <button className='btn btn-success'>Edit</button>
+                    <button className='btn btn-danger mx-2'>Delete</button>
+                  </td>
                 </tr>
+
                 <tr>
-                  <td>test@gmail.com</td>
-                  <td>1234</td>
-                  <td>Kasegaon</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415-404</td>
+                  <td>2</td>
+                  <td>Book</td>
+                  <td>Note Book</td>
+                  <td>10</td>
+                  <td>20</td>
+                  <td>10</td>
+                  <td>Box</td>
+                  <td className='d-flex'>
+                    <button className='btn btn-success'>Edit</button>
+                    <button className='btn btn-danger mx-2'>Delete</button>
+                  </td>
                 </tr>
-                <tr>
-                  <td>test@gmail.com</td>
-                  <td>1234</td>
-                  <td>Kasegaon</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415-404</td>
-                </tr>
-                <tr>
-                  <td>test@gmail.com</td>
-                  <td>1234</td>
-                  <td>Kasegaon</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415-404</td>
-                </tr>
-                <tr>
-                  <td>test@gmail.com</td>
-                  <td>1234</td>
-                  <td>Kasegaon</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415-404</td>
-                </tr>
-                <tr>
-                  <td>test@gmail.com</td>
-                  <td>1234</td>
-                  <td>Kasegaon</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415-404</td>
-                </tr>              
+
               </tbody>
             </Table>
           </div>
