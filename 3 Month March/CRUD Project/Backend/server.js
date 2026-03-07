@@ -38,7 +38,10 @@ const express = require('express')  //Node js framework
 const app = express() // app - variable - store express function
 const mongoose = require('mongoose')  // Library - connect mongodb database
 const { stringify } = require('querystring')
+const cors = require('cors') // Library - solve cors error 
+
 app.use(express.json())  // Convert all data into json format 
+app.use(cors())
 
 // DB Connect
 
@@ -50,7 +53,10 @@ mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.l
 const itemsSchema = new mongoose.Schema({
     name: String,
     description: String,
-    sellingPrice: Number
+    sellingPrice: Number,
+    purchasePrice: Number,
+    quantity: Number,
+    unit: String
 })
 
 
@@ -59,12 +65,15 @@ const Items = new mongoose.model("Items", itemsSchema)  // Table Name  // Collec
 // API 1 - Create Item
 app.post("/api/create-item", async (req, res) => {
     try {
-        const { name, description, sellingPrice } = req.body
+        const { name, description, sellingPrice, purchasePrice, quantity, unit} = req.body
         const saveItem = new Items(
             {
                 name,
                 description,
-                sellingPrice
+                sellingPrice,
+                purchasePrice,
+                quantity,
+                unit            
             }
         )
         await saveItem.save()

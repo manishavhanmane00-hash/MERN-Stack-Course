@@ -9,17 +9,14 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import "./style.css"
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 
   const [ItemName, setItemName] = useState()  // 1 Use state Hook
+  const [itemData, setData] = useState()
 
-
-
-
-
-
-  console.log(ItemName , "Item Name Value")
+  console.log(ItemName, "Item Name Value")
   const handleOnChange = (event) => {
 
 
@@ -51,7 +48,26 @@ function App() {
 
 
 
+  const getAllItemsData = async () => {
+    try {
+      const apiResponse = await fetch("http://localhost:9090/api/get-all-item")
+      const responseData = await apiResponse.json();
+      setData(responseData.data);
 
+      console.log(responseData);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getAllItemsData();
+  }, []);
+
+  console.log(
+    itemData, "itemData ==>"
+  )
   return (
     <>
 
@@ -119,7 +135,7 @@ function App() {
               </Row>
 
               <div className='text-center'>
-                <Button 
+                <Button
                   variant="primary"
                   type="submit"
                   className='w-50'
@@ -146,33 +162,28 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Pen</td>
-                  <td>Gel Pen </td>
-                  <td>10</td>
-                  <td>20</td>
-                  <td>10</td>
-                  <td>Box</td>
-                  <td className='d-flex'>
-                    <button className='btn btn-success'>Edit</button>
-                    <button className='btn btn-danger mx-2'>Delete</button>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td>2</td>
-                  <td>Book</td>
-                  <td>Note Book</td>
-                  <td>10</td>
-                  <td>20</td>
-                  <td>10</td>
-                  <td>Box</td>
-                  <td className='d-flex'>
-                    <button className='btn btn-success'>Edit</button>
-                    <button className='btn btn-danger mx-2'>Delete</button>
-                  </td>
-                </tr>
+                {
+                  itemData && itemData.map((each, index) => {
+                    return (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{each.name}</td>
+                        <td>{each.description}</td>
+                        <td>{each.purchasePrice}</td>
+                        <td>{each.quantity}</td>
+                        <td>{each.sellingPrice}</td>
+                        <td>{each.unit}</td>
+                        <td className='d-flex'>
+                          <button className='btn btn-success'>Edit</button>
+                          <button className='btn btn-danger mx-2'>Delete</button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
+
+
 
               </tbody>
             </Table>
@@ -180,7 +191,7 @@ function App() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default App
