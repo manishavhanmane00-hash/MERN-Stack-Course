@@ -13,25 +13,29 @@ import { useEffect } from 'react';
 
 function App() {
 
-  const [ItemName, setItemName] = useState()  // 1 Use state Hook
-  const [itemData, setData] = useState()
-
-  console.log(ItemName, "Item Name Value")
-  const handleOnChange = (event) => {
-
-
-    setItemName(event.target.value)
-
-
-    console.log("Typing on Input field")
-  }
+  const [ItemName, setItemName] = useState();  // 1 Use state Hook
+  const [description, setDescription] = useState();
+  const [purchasePrice, setPurchasePrice] = useState();
+  const [sellingPrice, setSellingPrice] = useState();
+  const [quantity, setQuantity] = useState();
+  const [itemData, setData] = useState();
 
 
 
-
-  function SubmitForm(e) {
+  async function SubmitForm(e) {
     e.preventDefault();
-    console.log("Form Submitted")
+    
+    const data = {
+      ItemName,
+      description,
+      purchasePrice,
+      sellingPrice,
+      quantity,   
+    };
+
+    console.log( data , "Form Submitted");
+
+    
 
     toast.success("Form Submitted", {
       position: "top-right",
@@ -94,11 +98,17 @@ function App() {
               <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Item Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Item Name" onChange={() => handleOnChange(event)} />
+                  <Form.Control type="text" placeholder="Enter Item Name"
+                   onChange={(event) => setItemName(event.target.value)}
+                    value={ItemName}
+                  />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>Description</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Description" />
+                  <Form.Control type="text" placeholder="Enter Description"
+                    onChange={(event) => setDescription(event.target.value)}
+                    value={description}
+                  />
                 </Form.Group>
 
               </Row>
@@ -106,11 +116,17 @@ function App() {
               <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Purchase Price</Form.Label>
-                  <Form.Control type="number" placeholder="Enter Purchase Price" />
+                  <Form.Control type="number" placeholder="Enter Purchase Price"
+                    onChange={(event) => setPurchasePrice(event.target.value)}
+                    value={purchasePrice}
+                  />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridAddress1">
                   <Form.Label>Selling Price</Form.Label>
-                  <Form.Control type="number" placeholder="Enter Selling Price" />
+                  <Form.Control type="number" placeholder="Enter Selling Price"
+                    onChange={(event) => setSellingPrice(event.target.value)}
+                    value={sellingPrice}
+                  />
                 </Form.Group>
               </Row>
 
@@ -122,7 +138,10 @@ function App() {
 
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Unit</Form.Label>
-                  <Form.Select defaultValue="Choose Unit">
+                  <Form.Select defaultValue="Choose Unit"
+                    value={quantity}
+                    onChange={(event) => setQuantity(event.target.value)}
+                  >
                     <option>Choose Unit</option>
                     <option>Pice</option>
                     <option>Box</option>
