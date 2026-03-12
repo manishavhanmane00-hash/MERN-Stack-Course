@@ -30,24 +30,24 @@ function App() {
       e.preventDefault();
 
       const data = {
-        name: itemName,
-        description: description,
-        purchasePrice: purchasePrice,
-        sellingPrice: sellingPrice,
-        quantity: quantity,
-        unit: unit,
+        itemName,
+        description,
+        purchasePrice,
+        sellingPrice,
+        quantity,
+        unit,
       };
 
       console.log(data, "Form Submitted");
 
       const apiResponse = await axios.post("http://localhost:9090/api/create-item",
         {
-          itemName,
-          description,
-          purchasePrice,
-          sellingPrice,
-          quantity,
-          unit,
+          name : itemName,
+          description : description,
+          purchasePrice : purchasePrice,
+          sellingPrice : sellingPrice,
+          quantity : quantity,
+          unit : unit,
         }).then(console.log("yes")).catch((error) => console.log(error));
 
       console.log(apiResponse);
@@ -68,7 +68,7 @@ function App() {
 
 
     } catch { error } {
-      console.log(error)
+      console.log(error);
     }
 
   }
@@ -214,8 +214,8 @@ function App() {
                         <td>{each.name}</td>
                         <td>{each.description}</td>
                         <td>{each.purchasePrice}</td>
-                         <td>{each.sellingPrice}</td>
-                        <td>{each.quantity}</td>                      
+                        <td>{each.sellingPrice}</td>
+                        <td>{each.quantity}</td>
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
