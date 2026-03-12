@@ -45,7 +45,7 @@ app.use(cors())
 
 // DB Connect
 
-mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("Mpngo DB Connected")).catch((error) => console.log(error))
+mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("Mongo DB Connected")).catch((error) => console.log(error))
 
 // Schema - Model - Data base table structure
 // values store database - structure 
@@ -85,7 +85,7 @@ app.post("/api/create-item", async (req, res) => {
 })
 
 // API 1 - Update/Edit Item 
-app.put(" /api/update-item", (req, res) => {
+app.put("/api/update-item", (req, res) => {
     try {
 
     } catch { error } {

@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from "axios"
 
 
 import "./style.css"
@@ -13,44 +14,64 @@ import { useEffect } from 'react';
 
 function App() {
 
-  const [ItemName, setItemName] = useState();  // 1 Use state Hook
+  const [itemName, setItemName] = useState();  // 1 Use state Hook
   const [description, setDescription] = useState();
   const [purchasePrice, setPurchasePrice] = useState();
   const [sellingPrice, setSellingPrice] = useState();
   const [quantity, setQuantity] = useState();
+  const [unit, setUnit] = useState();
   const [itemData, setData] = useState();
 
 
 
   async function SubmitForm(e) {
-    e.preventDefault();
-    
-    const data = {
-      ItemName,
-      description,
-      purchasePrice,
-      sellingPrice,
-      quantity,   
-    };
 
-    console.log( data , "Form Submitted");
+    try {
+      e.preventDefault();
 
-    
+      const data = {
+        name: itemName,
+        description: description,
+        purchasePrice: purchasePrice,
+        sellingPrice: sellingPrice,
+        quantity: quantity,
+        unit: unit,
+      };
 
-    toast.success("Form Submitted", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+      console.log(data, "Form Submitted");
+
+      const apiResponse = await axios.post("http://localhost:9090/api/create-item",
+        {
+          itemName,
+          description,
+          purchasePrice,
+          sellingPrice,
+          quantity,
+          unit,
+        }).then(console.log("yes")).catch((error) => console.log(error));
+
+      console.log(apiResponse);
+      getAllItemsData();
+
+
+
+      toast.success("Form Submitted", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
+
+    } catch { error } {
+      console.log(error)
+    }
+
   }
-
-
-
 
   const getAllItemsData = async () => {
     try {
@@ -99,8 +120,8 @@ function App() {
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Item Name</Form.Label>
                   <Form.Control type="text" placeholder="Enter Item Name"
-                   onChange={(event) => setItemName(event.target.value)}
-                    value={ItemName}
+                    onChange={(event) => setItemName(event.target.value)}
+                    value={itemName}
                   />
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridCity">
@@ -133,14 +154,17 @@ function App() {
               <Row className="mb-2">
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>Quantity</Form.Label>
-                  <Form.Control type="number" placeholder="Enter Quantiy" />
+                  <Form.Control type="number" placeholder="Enter Quantiy"
+                    value={quantity}
+                    onChange={(event) => setQuantity(event.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Unit</Form.Label>
                   <Form.Select defaultValue="Choose Unit"
-                    value={quantity}
-                    onChange={(event) => setQuantity(event.target.value)}
+                    value={unit}
+                    onChange={(event) => setUnit(event.target.value)}
                   >
                     <option>Choose Unit</option>
                     <option>Pice</option>
@@ -190,8 +214,8 @@ function App() {
                         <td>{each.name}</td>
                         <td>{each.description}</td>
                         <td>{each.purchasePrice}</td>
-                        <td>{each.quantity}</td>
-                        <td>{each.sellingPrice}</td>
+                         <td>{each.sellingPrice}</td>
+                        <td>{each.quantity}</td>                      
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
