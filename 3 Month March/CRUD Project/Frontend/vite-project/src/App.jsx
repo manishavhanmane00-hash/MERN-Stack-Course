@@ -9,8 +9,8 @@ import axios from "axios"
 
 
 import "./style.css"
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react'; //Store Data
+import { useEffect } from 'react'; //Function Call After Page Load
 
 function App() {
 
@@ -20,10 +20,11 @@ function App() {
   const [sellingPrice, setSellingPrice] = useState();
   const [quantity, setQuantity] = useState();
   const [unit, setUnit] = useState();
+
+
   const [itemData, setData] = useState();
 
-
-
+  
   async function SubmitForm(e) {
 
     try {
