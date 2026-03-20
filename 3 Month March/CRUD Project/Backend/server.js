@@ -65,7 +65,7 @@ const Items = new mongoose.model("Items", itemsSchema)  // Table Name  // Collec
 // API 1 - Create Item
 app.post("/api/create-item", async (req, res) => {
     try {
-        const { name, description, sellingPrice, purchasePrice, quantity, unit} = req.body
+        const { name, description, sellingPrice, purchasePrice, quantity, unit } = req.body
         const saveItem = new Items(
             {
                 name,
@@ -73,7 +73,7 @@ app.post("/api/create-item", async (req, res) => {
                 sellingPrice,
                 purchasePrice,
                 quantity,
-                unit            
+                unit
             }
         )
         await saveItem.save()
@@ -95,8 +95,15 @@ app.put("/api/update-item", (req, res) => {
 })
 
 // API 1 - Delete Item 
-app.delete("/api/delete-item", (req, res) => {
+app.delete("/api/delete-item/:id", async (req, res) => {
     try {
+
+        const { id, } = req.params
+
+        const deleteItem = await Items.findByIdAndDelete(id);
+
+        res.status(200).json({ message: "Item Deleted", deleteItem: deleteItem});
+
 
     } catch { error } {
         console.log(error)

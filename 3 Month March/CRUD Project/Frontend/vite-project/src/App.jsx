@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from "axios"
+import Modal from 'react-bootstrap/Modal';
+
 
 
 import "./style.css"
@@ -24,7 +26,7 @@ function App() {
 
   const [itemData, setData] = useState();
 
-  
+
   async function SubmitForm(e) {
 
     try {
@@ -43,12 +45,12 @@ function App() {
 
       const apiResponse = await axios.post("http://localhost:9090/api/create-item",
         {
-          name : itemName,
-          description : description,
-          purchasePrice : purchasePrice,
-          sellingPrice : sellingPrice,
-          quantity : quantity,
-          unit : unit,
+          name: itemName,
+          description: description,
+          purchasePrice: purchasePrice,
+          sellingPrice: sellingPrice,
+          quantity: quantity,
+          unit: unit,
         }).then(console.log("yes")).catch((error) => console.log(error));
 
       console.log(apiResponse);
@@ -93,7 +95,44 @@ function App() {
 
   console.log(
     itemData, "itemData ==>"
-  )
+  );
+
+  const [show, setShow] = useState(false);
+
+  const [id , setId] = useState(); 
+
+  const handleClose = () => setShow(false);
+  
+  const openDeleteModel= (_id) => {
+    try {
+
+      setShow(true);
+      setId(_id);
+      console.log(_id, "_id==>");
+      console.log("call delete function");
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      console.log(id , "id==>");
+      
+      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-item/${id}`) 
+
+      setShow(false)
+      console.log(apiResponse);
+
+      getAllItemsData();
+  
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  
   return (
     <>
 
@@ -220,7 +259,12 @@ function App() {
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
-                          <button className='btn btn-danger mx-2'>Delete</button>
+                          <button className='btn btn-danger mx-2'
+                            onClick = { () => openDeleteModel(each._id) }
+
+                          >
+
+                            Delete</button>
                         </td>
                       </tr>
                     );
@@ -232,8 +276,27 @@ function App() {
               </tbody>
             </Table>
           </div>
+
         </div>
-      </div>
+      </div >
+
+
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Confirmation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete this Item</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDelete}>
+            Yes
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+           No
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </>
   );
 }
