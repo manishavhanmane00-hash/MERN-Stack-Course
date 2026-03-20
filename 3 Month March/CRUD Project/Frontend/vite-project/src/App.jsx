@@ -150,7 +150,7 @@ function App() {
       />
 
 
-      <h2 className='text-danger text-center my-5'>CRUD - MERN Stack Project Start</h2>
+      <h2 className='text-danger text-center my-5'>CRUD</h2>
       <div className='container'>
         <div className='row'>
           <div className='col-md-6'>
