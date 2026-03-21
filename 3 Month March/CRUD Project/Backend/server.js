@@ -31,109 +31,66 @@
 // }
 
 
-console.log("Hello Node JS Project Started")
+// Backend project // Node Js // Express Js // DB - MongoDB
+// APIs url -DB open 
+
+// Import Express framework (Used to create server and APIs)
+const express = require('express')  
+
+// Create express applicatin  instance 
+const app = express()
 
 
-const express = require('express')  //Node js framework
-const app = express() // app - variable - store express function
-const mongoose = require('mongoose')  // Library - connect mongodb database
-const { stringify } = require('querystring')
-const cors = require('cors') // Library - solve cors error 
+// Import CORS library (Allows Frontend apps to call Backend APIs)
+const cors = require('cors') 
+const { connectDB } = require('./config/db')
 
-app.use(express.json())  // Convert all data into json format 
+// Middleware: Convert incoming request data into JSON format
+app.use(express.json())  
+
+// Middleware: enable Cross-Origin Resource Sharing
 app.use(cors())
 
-// DB Connect
+//------------------------
+// MongoDB Database Connection 
+//-------------------------
 
-mongoose.connect("mongodb://localhost:27017/item-database").then(() => console.log("Mongo DB Connected")).catch((error) => console.log(error))
+connectDB()
 
-// Schema - Model - Data base table structure
-// values store database - structure 
-
-const itemsSchema = new mongoose.Schema({
-    name: String,
-    description: String,
-    sellingPrice: Number,
-    purchasePrice: Number,
-    quantity: Number,
-    unit: String
-})
+ 
 
 
-const Items = new mongoose.model("Items", itemsSchema)  // Table Name  // Collection Name - Items
 
-// API 1 - Create Item
-app.post("/api/create-item", async (req, res) => {
-    try {
-        const { name, description, sellingPrice, purchasePrice, quantity, unit } = req.body
-        const saveItem = new Items(
-            {
-                name,
-                description,
-                sellingPrice,
-                purchasePrice,
-                quantity,
-                unit
-            }
-        )
-        await saveItem.save()
-        res.status(201).json({ message: "Item Created", data: saveItem })
-    } catch { error } {
-        console.log(error)
-    }
-
-})
-
-// API 1 - Update/Edit Item 
-app.put("/api/update-item", (req, res) => {
-    try {
-
-    } catch { error } {
-        console.log(error)
-    }
-
-})
-
-// API 1 - Delete Item 
-app.delete("/api/delete-item/:id", async (req, res) => {
-    try {
-
-        const { id, } = req.params
-
-        const deleteItem = await Items.findByIdAndDelete(id);
-
-        res.status(200).json({ message: "Item Deleted", deleteItem: deleteItem});
+// POST API to create new item
+app.post("/api/create-item" , addItem)
 
 
-    } catch { error } {
-        console.log(error)
-    }
+// PUT API used to update item
+app.put("/api/update-item", editItem)
 
-})
 
-// API 1 - GetAll Item
-app.get("/api/get-all-item", async (req, res) => {
-    try {
-        const items = await Items.find()
 
-        res.status(200).json({ message: "Get all Item List", data: items })
+// DELETE API to remove item from database 
+app.delete("/api/delete-item/:id", deleteItem )
 
-    } catch { error } {
-        console.log(error)
-    }
-})
 
-// Health API 
+// GET API to fetch all items from database 
+app.get("/api/get-all-item", getAllItems )
 
+
+
+// Simple API to check server is running or not
 app.get("/health", (req, res) => {
     res.status(200).json({ message: "Server is Running" })
 
 })
 
-// server Start
 
+
+// Define port number where server will run 
 const PORT = 9090
 
+// Start express server
 app.listen(PORT, () => {
     console.log("server started")
 })

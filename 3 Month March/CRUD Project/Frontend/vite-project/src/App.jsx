@@ -15,6 +15,11 @@ import { useState } from 'react'; //Store Data
 import { useEffect } from 'react'; //Function Call After Page Load
 
 function App() {
+  // useState - Hook , We can store value in useState and that we can update
+  // useEffect - side effect Perform - each page load it will be call useeffect
+  // useMemo
+  // useCallback
+  // useRef
 
   const [itemName, setItemName] = useState();  // 1 Use state Hook
   const [description, setDescription] = useState();
