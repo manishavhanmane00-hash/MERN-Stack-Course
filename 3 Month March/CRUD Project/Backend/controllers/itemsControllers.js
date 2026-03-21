@@ -1,7 +1,8 @@
 
-import Items from "./../models/itemsModel"
 
-const addItem = async () => {
+const Items = require('./../models/itemsModel')
+
+const addItem = async (req,res) => {
     try {
 
         // Get item data sent from frontend 
@@ -23,7 +24,14 @@ const addItem = async () => {
         await saveItem.save()
 
         // Send response to frontend
-        res.status(201).json({ message: "Item Created", data: saveItem })
+        res.status(201).json
+            (
+                {
+                    message: "Item Created",
+                    data: saveItem
+                }
+            )
+
     } catch { error } {
 
         // Print error in console
@@ -31,7 +39,7 @@ const addItem = async () => {
     }
 }
 
-const getAllItems = async () => {
+const getAllItems = async (req,res) => {
     try {
 
         // Fetch all documents from Items collection
@@ -47,7 +55,7 @@ const getAllItems = async () => {
     }
 }
 
-const deleteItem = async () => {
+const deleteItem = async (req,res) => {
     try {
 
         // Get item ID from URL parameters
@@ -65,7 +73,7 @@ const deleteItem = async () => {
     }
 }
 
-const editItem = async () => {
+const editItem = async (req,res) => {
     try {
 
         // Here we will receive item ID and updated data from frontend
