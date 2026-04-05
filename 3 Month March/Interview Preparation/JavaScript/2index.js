@@ -48,7 +48,14 @@ const myPromise = new Promise(
     }
 )
 
+const testPromise = new Promise((resolve , reject) => {
+
+})
+
+
 myPromise.then((res) => console.log(res)).catch((error) => console.log(error))
+
+console.log(testPromise)
 
 
 // 3. async/await

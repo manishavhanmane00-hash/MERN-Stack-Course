@@ -1,58 +1,50 @@
-console.log("We are using JavaScript")
+console.log("We are using JavaScript");
 
+// ==================== Variables ====================
+const name = "HOC";                    // Cannot be changed
+var surname = "Tech";                  // Old way - avoid using var
+let middlename = "Solutions";
 
-// Variables
+// ==================== Functions ====================
 
-const name = "HOC"                  // Fixed Value We cannot change 
-var surname = "Tech"                // Global We can change anywhere in file  
-let middlename = "Solutions"        
-
-// Functions
-
-// Normal Function 
+// 1. Normal Function
 function getMyName() {
-    console.log("function 1")
-} 
+    console.log("function 1");
+}
 
-getMyName()
+getMyName();
 
-// Arrow Function 
+// 2. Arrow Function
 const getYourName = () => {
-    console.log("function 2")
-}
+    console.log("function 2");
+};
 
-getYourName()
+getYourName();
 
-// Parameter - default Parameter
+// 3. Function with Default Parameter
+const getFullName = (data = "No Name") => {
+    console.log("My Full Name:", data);
+};
 
-const getFullName = (data ="No Name") => {
-    console.log("My Full Name" , data)
-}
+const myName = "Manisha Vhanmane";
+getFullName(myName);
 
-const myName = "Manisha Vhanmane"
+const test = "Akshada Patil";
+getFullName(test);
 
-getFullName(myName)
+getFullName(); // Will print default value
 
+// ==================== Array ====================
+const items = ["test 1", "test 2", "test 3", "test 4"];
 
-const test = "Akshada Patil"
-getFullName(test)
+console.log(items, "→ Full Array");
+console.log(items[0], "→ First Element");
 
-getFullName()
-
-// Array - index  0          1           2         3
-const items = ["test 1" , "test 2" , "test 3" , "test 4"]
-console.log(items , "Full Item Print")
-console.log(items[0] , " - Print only index 0 - ( First Value )")
-
-
-
-
-// Object - Key Value Pair
+// ==================== Object ====================
 const studentDetails = {
-  // Key  -   Value  
-    name : "Manisha Vhanmane",
-    city : "Karad"
-}
+    name: "Manisha Vhanmane",
+    city: "Karad"
+};
 
-console.log(studentDetails, " => StudentDetails full object")
-console.log(studentDetails.name, " => StudentDetails name only ")
+console.log(studentDetails, "=> StudentDetails full object");
+console.log(studentDetails.name, "=> StudentDetails Name Only");
