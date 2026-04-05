@@ -23,7 +23,7 @@ const getYourName = () => {
 
 getYourName()
 
-// Parameter 
+// Parameter - default Parameter
 
 const getFullName = (data ="No Name") => {
     console.log("My Full Name" , data)
