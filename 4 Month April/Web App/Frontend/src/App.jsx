@@ -2,17 +2,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./screens/login";
 import Register from "./screens/register";
+import Item from "./screens/Item";
 import Dashboard from "./screens/Dashboard";
 
+import AuthNavBar from "./components/AuthNavBar"
 
 const App = () => {
   return (
     <BrowserRouter>
       <div>
+        <AuthNavBar/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/item" element={<Item />} />
           <Route path="/dashboard" element={<Dashboard />} />
+
         </Routes>
       </div>
     </BrowserRouter>

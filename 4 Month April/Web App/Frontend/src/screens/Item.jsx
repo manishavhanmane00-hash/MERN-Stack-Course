@@ -11,7 +11,8 @@ import "./../style.css";
 import { useState } from 'react'; //Store Data
 import { useEffect } from 'react'; //Function Call After Page Load
 
-function HomePage() {
+
+function Item() {
   // useState - Hook , We can store value in useState and that we can update
   // useEffect - side effect Perform - each page load it will be call useeffect
   // useMemo
@@ -101,11 +102,11 @@ function HomePage() {
 
   const [show, setShow] = useState(false);
 
-  const [id , setId] = useState(); 
+  const [id, setId] = useState();
 
   const handleClose = () => setShow(false);
-  
-  const openDeleteModel= (_id) => {
+
+  const openDeleteModel = (_id) => {
     try {
 
       setShow(true);
@@ -120,23 +121,24 @@ function HomePage() {
 
   const handleDelete = async () => {
     try {
-      console.log(id , "id==>");
-      
-      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-item/${id}`) 
+      console.log(id, "id==>");
+
+      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-item/${id}`)
 
       setShow(false)
       console.log(apiResponse);
 
       getAllItemsData();
-  
+
     } catch (error) {
       console.log(error);
     }
   }
 
-  
+
   return (
     <>
+
 
       <ToastContainer
         position="top-right"
@@ -152,7 +154,7 @@ function HomePage() {
       />
 
 
-      <h2 className='text-danger text-center my-5'>Manage Items</h2>
+      <h1 className='text-danger text-center my-5'> <b> Manage Items </b></h1>
       <div className='container'>
         <div className='row'>
           <div className='col-md-6'>
@@ -262,7 +264,7 @@ function HomePage() {
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
                           <button className='btn btn-danger mx-2'
-                            onClick = { () => openDeleteModel(each._id) }
+                            onClick={() => openDeleteModel(each._id)}
 
                           >
 
@@ -294,7 +296,7 @@ function HomePage() {
             Yes
           </Button>
           <Button variant="primary" onClick={handleClose}>
-           No
+            No
           </Button>
         </Modal.Footer>
       </Modal>
@@ -303,4 +305,4 @@ function HomePage() {
   );
 }
 
-export default HomePage
+export default Item
