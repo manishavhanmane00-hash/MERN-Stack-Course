@@ -23,6 +23,8 @@ const { connectDB } = require('./config/db') // Inform Function from another fil
 
 
 const { addItem , editItem , deleteItem , getAllItems } = require('./controllers/itemsControllers')
+const { login, register } = require('./controllers/authControllers')
+const { getDashboardCount } = require('./controllers/dashboardControllers')
 
 // Middleware: Convert incoming request data into JSON format
 // const userInfo ={ " name" : "HOC" }
@@ -37,10 +39,18 @@ app.use(cors())
 
 connectDB()
 
+// Auth  API's - Authentication API's 
+
+app.post("/api/login" , login)
+app.post("/api/register" , register)
 
 
 
 
+
+
+
+// Item API --
 // POST API to create new item
 app.post("/api/create-item", addItem)
 
@@ -56,6 +66,17 @@ app.delete("/api/delete-item/:id", deleteItem)
 
 // GET API to fetch all items from database 
 app.get("/api/get-all-item", getAllItems)
+
+
+
+
+
+
+
+// Dashboard API's 
+// Get All Count to Show on Dashboard
+
+app.get("/api/get-dashboard" , getDashboardCount)
 
 
 
