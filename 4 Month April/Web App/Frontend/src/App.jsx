@@ -8,6 +8,12 @@ import Dashboard from "./screens/Dashboard";
 import AuthNavBar from "./components/AuthNavBar"
 
 const App = () => {
+ 
+    console.log(import.meta.env.VITE_API_KEY_BACKEND , "=====>")
+  
+
+
+
   return (
     <BrowserRouter>
       <div>

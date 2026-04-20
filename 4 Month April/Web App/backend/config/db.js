@@ -6,7 +6,7 @@ const connectDB = () => {
         // Connect Node.js server with MongoDB database
         // Common URL Same for all/database name 
         // mongodb://localhost:27017/item-database
-        mongoose.connect("mongodb://localhost:27017/item-database")
+        mongoose.connect(process.env.MONGO_DB_URL)
 
 
             // If connection Successful show message in console 

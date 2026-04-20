@@ -32,7 +32,7 @@ const addItem = async (req,res) => {
                 }
             )
 
-    } catch { error } {
+    } catch (error)  {
 
         // Print error in console
         console.log(error)
@@ -48,7 +48,7 @@ const getAllItems = async (req,res) => {
         // Send data to frontend
         res.status(200).json({ message: "Get all Item List", data: items })
 
-    } catch { error } {
+    } catch (error)  {
 
         console.log(error)
 
@@ -65,10 +65,10 @@ const deleteItem = async (req,res) => {
         const deleteItem = await Items.findByIdAndDelete(id);
 
         // Send success response 
-        res.status(200).json({ message: "Item Deleted", deleteItem: deleteItem });
+        res.status(200).json({ message: "Get All Item List", deleteItem: deleteItem });
 
 
-    } catch { error } {
+    } catch (error) {
         console.log(error)
     }
 }
@@ -78,7 +78,7 @@ const editItem = async (req,res) => {
 
         // Here we will receive item ID and updated data from frontend
         // Then we will update record in database using mongoose update query
-    } catch { error } {
+    } catch (error) {
         console.log(error)
     }
 

@@ -27,7 +27,7 @@ function Item() {
   const [unit, setUnit] = useState();
 
 
-  const [itemData, setData] = useState();
+  const [itemData, setData] = useState([]);
 
 
   async function SubmitForm(e) {
@@ -46,17 +46,22 @@ function Item() {
 
       console.log(data, "Form Submitted");
 
-      const apiResponse = await axios.post("http://localhost:9090/api/create-item",
+      const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-item`,
+
         {
           name: itemName,
-          description: description,
-          purchasePrice: purchasePrice,
-          sellingPrice: sellingPrice,
-          quantity: quantity,
-          unit: unit,
-        }).then(console.log("yes")).catch((error) => console.log(error));
+          description,
+          purchasePrice,
+          sellingPrice,
+          quantity,
+          unit,
+        }
+      );
 
-      console.log(apiResponse);
+         
+
+      console.log("yes");
+
       getAllItemsData();
 
 
@@ -73,7 +78,7 @@ function Item() {
       });
 
 
-    } catch { error } {
+    } catch (error) {
       console.log(error);
     }
 
@@ -81,7 +86,7 @@ function Item() {
 
   const getAllItemsData = async () => {
     try {
-      const apiResponse = await fetch("http://localhost:9090/api/get-all-item")
+      const apiResponse = await fetch(`${import.meta.env.VITE_API_URL_BACKEND}/get-all-item`);
       const responseData = await apiResponse.json();
       setData(responseData.data);
 
@@ -123,7 +128,7 @@ function Item() {
     try {
       console.log(id, "id==>");
 
-      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-item/${id}`)
+      const apiResponse = await axios.delete(`${import.meta.env.VITE_API_URL_BACKEND}/delete-item/${id}`);
 
       setShow(false)
       console.log(apiResponse);
@@ -253,7 +258,7 @@ function Item() {
                 {
                   itemData && itemData.map((each, index) => {
                     return (
-                      <tr>
+                      <tr key={index + 0}>
                         <td>{index + 1}</td>
                         <td>{each.name}</td>
                         <td>{each.description}</td>
@@ -305,4 +310,6 @@ function Item() {
   );
 }
 
+
 export default Item
+

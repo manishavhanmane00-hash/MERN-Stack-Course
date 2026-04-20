@@ -1,3 +1,7 @@
+require('dotenv').config()
+// or import 'dotenv/config' // for esm
+
+console.log(process.env.PORT , "====>") // Remove  this after you're confirmed it is working 
 
 
 
@@ -64,10 +68,10 @@ app.get("/health", (req, res) => {
 
 
 // Define port number where server will run 
-const PORT = 9090
+const PORT = process.env.PORT || 1010
 
 // Start express server
 app.listen(PORT, () => {
     // Show message when server start
-    console.log("server started")
+    console.log(`Server is Running  ${PORT}`)
 })
